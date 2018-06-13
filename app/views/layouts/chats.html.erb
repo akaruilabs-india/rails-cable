@@ -1,0 +1,17 @@
+Total chats <%= @chats.count  %>
+
+<% @chats.each do |chat| %>
+  <div class="alert alert-<%= random_color %>" role="alert">
+    <%= chat.text %>
+    <p class="float-right">
+      <%= chat.created_at.strftime('%d-%m-%Y %r') %>
+    </p>
+  </div>
+<% end %>
+
+<%= form_for(Chat.new, url: create_chat_path, remote: true) do |f| %>
+  <div class="form-group">
+    <%= f.text_area :text, class: 'form-control', placeholder: 'Write something' %>
+  </div>
+  <%= f.submit 'Submit', class: 'btn btn-primary' %>
+<% end %>
