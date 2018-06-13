@@ -1,17 +1,31 @@
-Total chats <%= @chats.count  %>
+<h2>Total chats: <%= @chats.count %></h2>
 
-<% @chats.each do |chat| %>
-  <div class="alert alert-<%= random_color %>" role="alert">
-    <%= chat.text %>
-    <p class="float-right">
-      <%= chat.created_at.strftime('%d-%m-%Y %r') %>
-    </p>
+<div class="chats-container">
+  <div class="chats">
+    <% @chats.each do |chat| %>
+      <div class="alert alert-<%= random_color %>" role="alert">
+        <%= chat.text %>
+        <p class="float-right">
+          <%= chat.created_at.strftime('%d-%m-%Y %r') %>
+        </p>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
 
-<%= form_for(Chat.new, url: create_chat_path, remote: true) do |f| %>
-  <div class="form-group">
-    <%= f.text_area :text, class: 'form-control', placeholder: 'Write something' %>
+<nav class="navbar fixed-bottom navbar-light bg-light">
+  <div class="container">
+    <%= form_for(Chat.new, url: create_chat_path, remote: true) do |f| %>
+      <div class="row">
+        <div class="col-md-11">
+          <div class="form-group">
+            <%= f.text_area :text, class: 'form-control', rows: '1', placeholder: 'Write something' %>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <%= f.submit 'Submit', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <%= f.submit 'Submit', class: 'btn btn-primary' %>
-<% end %>
+</nav>
