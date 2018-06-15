@@ -15,3 +15,9 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  setTimeout(function() {
+    window.scrollTo(0, document.body.scrollHeight)
+  }, 1000);
+});

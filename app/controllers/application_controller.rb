@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
   end
 
   def create_chat
-    Chat.create(chat_params)
-    ActionCable.server.broadcast 'chat_channel', text: chat_params[:text]
+    chat = Chat.create(chat_params)
+    ActionCable.server.broadcast 'chat_channel', text: chat.text, time: chat.created_at.strftime('%d-%m-%Y %r')
     redirect_to root_path
   end
 

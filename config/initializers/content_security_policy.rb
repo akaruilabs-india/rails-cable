@@ -11,7 +11,7 @@ Rails.application.config.content_security_policy do |policy|
   policy.object_src  :none
   policy.script_src  :self, :https
   policy.style_src   :self, :https
-  policy.connect_src :self, :https, 'ws://localhost:3000'
+  policy.connect_src :self, :https, "ws://#{ENV['APP_URL'] || 'localhost:3000'}"
 
   # Specify URI for violation reports
   # policy.report_uri "/csp-violation-report-endpoint"
